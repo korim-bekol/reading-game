@@ -33,7 +33,7 @@ const WORDS = [["שָׁלוֹם", "שלום"], ["שֶׁמֶשׁ", "שמש"], ["�
 const $ = id => document.getElementById(id);
 const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 let index=0, correct=0, skipped=0, listening=false, advancing=false, session=0, active=null, timer=null, watchdog=null, autoMode=false, retryTimer=null, manualStop=false;
-function normalize(text){return String(text).normalize('NFKD').replace(/[\u0591-\u05C7]/g,'').replace(/[ךםןףץ]/g,c=>({'ך':'כ','ם':'מ','ן':'נ','ף':'פ','ץ':'צ'}[c])).replace(/[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g,'').replace(/[^\u05d0-\u05ea\s]/g,'').trim().replace(/\s+/g,' ');}
+function normalize(text){return String(text).normalize('NFKD').replace(/[\u0591-\u05C7]/g,'').replace(/[ךםןףץ]/g,c=>({'ך':'כ','ם':'מ','ן':'נ','ף':'פ','ץ':'צ'}[c])).replace(/[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g,'').replace(/[^\u05d0-\u05ea\s]/g,'').replace(/[וי]/g,'').trim().replace(/\s+/g,' ');}
 function matches(text,entry){const n=normalize(text);return n!==''&&entry.some(w=>normalize(w)===n);}
 function feedback(text,kind=''){ $('feedback').textContent=text;$('feedback').className='feedback '+kind; }
 function support(text){$('supportText').textContent=text;$('support').hidden=!text;}
